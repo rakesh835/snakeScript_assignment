@@ -1,0 +1,26 @@
+{% extends 'todo_base_app/base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+
+    <div class="register-content">
+        <form action="{% url 'update_todo' pk %}" method="POST">
+            {% csrf_token %}
+            <fieldset class="register-form-group">
+                <legend>Update todo</legend>
+                <hr>
+                {{ todo_form|crispy }}
+            </fieldset>
+
+            <div class="form-submit">
+                <button class="btn btn-outline-primary" type="submit">Update Todo</button>
+                <button class="btn btn-outline-primary-danger" type="submit"><a href="{% url 'home' %}" id="Home">Cancel</a></button>
+                
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}

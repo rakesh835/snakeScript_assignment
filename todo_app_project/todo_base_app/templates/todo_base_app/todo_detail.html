@@ -1,0 +1,40 @@
+{% extends 'todo_base_app/base.html' %}
+
+
+
+{% block content %}
+	
+	<div class="container-fluid" style="width: 50%;">
+		<div class="card text-center">
+		  <div class="card-body">
+		  	<div>
+		  		<h5><strong>Title</strong></h5><small class="justify-content-end disabled" aria-disabled="true">{{ todo_task.updated_at|date }}</small>
+		  	</div>
+		  	
+		    <h5 class="card-title  mb-3" style="margin:0.3em; padding:0.4em; color: #2c575c; background: #cafaf0">{{ todo_task.title }}</h5>
+		    <h6><strong>Description</strong></h6>
+		    {% if todo_task.description %}
+		    	<p class="card-text text-break mx-auto p-2" style="margin:0.4em; padding: 0.2em; color: #2c575c; background: #f7f7f2">{{ todo_task.description }}</p>
+		    {% else %}
+		    	<p class="card-text text-break mx-auto p-2" style="margin:0.4em; padding: 0.2em; color: #2c575c; background: #f7f7f2">No description found for this task.</p>
+		    {% endif %}
+		  </div>
+		  
+		</div>
+		<div class="card-footer text-body-secondary text-center">
+    		<div class="modal-footer">
+    			{% if todo_task.is_completed %}
+    				<a class="btn btn-outline-secondary link" href="{% url 'undone_todo' todo_task.id %}" role="button">mark as undone</a>
+    			
+    			{% else %}
+    				<a class="btn btn-outline-primary link" href="{% url 'update_todo' todo_task.id %}" role="button">Edit</a>
+    				<a class="btn btn-outline-secondary link" href="{% url 'complete_todo' todo_task.id %}" role="button">mark as complete</a>
+    			{% endif %}
+
+    			<a class="btn btn-outline-danger link" href="{% url 'delete_todo' todo_task.id %}" role="button">delete</a>
+		    </div>
+  		</div>	
+	</div>
+	
+
+{% endblock %}

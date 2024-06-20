@@ -1,0 +1,26 @@
+{% extends 'todo_base_app/base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+
+    <div class="register-content">
+        <form action="{% url 'create_todo' %}" method="POST">
+            {% csrf_token %}
+            <fieldset class="register-form-group">
+                <legend>Add todo</legend>
+                <hr>
+                {{ todo_form|crispy }}
+            </fieldset>
+
+            <div class="form-submit">
+                <button class="btn btn-outline-primary" type="submit">Add Todo</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+{% endblock %}

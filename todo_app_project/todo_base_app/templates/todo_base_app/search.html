@@ -1,0 +1,90 @@
+{% extends 'todo_base_app/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Search functionality -->
+	<div class="container-fluid todo-container">
+	    <form action="{% url 'search_todo' %}" class="d-flex search-box" role="search">
+        	<input class="form-control me-2" type="search" placeholder="Search" name="query" aria-label="Search">
+        	<button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+	</div>
+	
+    {% if todo_list %}
+
+		{% for todo_task in todo_list %}
+    		
+    		<div class="todo-container">
+		        <div class="todos">
+                    <p><a href="{% url 'todo_details' todo_task.id %}" style="color: darkred;">{{ todo_task.title }}</a></p>
+		            <ul class="crud-buttons">
+                        {% if todo_task.is_completed %}
+                            <li><a href="{% url 'undone_todo' todo_task.id %}" id="complete-todo">mark as undone</a></li>
+                        {% else %}
+		                    <li>
+		                        <button id="edit-todo" data-toggle="modal"><a href="{% url 'update_todo' todo_task.id %}">Edit</a></button>
+		                    </li>
+		                    <li><a href="{% url 'complete_todo' todo_task.id %}" id="complete-todo">mark as completed</a></li>
+                        
+                        {% endif %}
+                        <li><a href="{% url 'todo_details' todo_task.id %}" id="complete-todo">Details</a></li>
+		                <li><a href="{% url 'delete_todo' todo_task.id %}" id="delete-todo">Delete</a></li>
+		            </ul>
+		        </div>
+    		</div>
+
+    	{% endfor %}
+    
+    {% else %}
+        <div class="container-fluid todo-container" style="width: 50%; height: 50px; color: darkred; background: #d7ed66;">
+            <p>No results found. Please enter valid keyword to search.</p>
+        </div>	   
+		
+    {% endif %}
+
+
+    <!-- Pagination to display certain tasks per page -->
+    {% if paginator %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if todo_list.has_previous %}
+                    <li class="page-item previous-page">
+                        <a class="page-link" href="?{% if query %}query={{query}}&{% endif %}page=1" tabindex="-1">First</a>
+                    </li>
+                    <li class="page-item previous-page">
+                        <a class="page-link" href="?{% if query %}query={{query}}&{% endif %}page={{ todo_list.previous_page_number }}" tabindex="-1">{{ todo_list.previous_page_number }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled previous-page">
+                        <a class="page-link" href="?page=0" tabindex="-1">First</a>
+                    </li>
+                {% endif %}
+
+                <li class="page-item active current-page">
+                    <a class="page-link" href="">{{ todo_list.number }}</a>
+                </li>
+
+                {% if todo_list.has_next %}
+                    <li class="page-item next-page">
+                        <a class="page-link" href="?{% if query %}query={{query}}&{% endif %}page={{ todo_list.next_page_number }}" tabindex="-1">{{ todo_list.next_page_number }}</a>
+                    </li>
+                    <li class="page-item next-page">
+                        <a class="page-link" href="?{% if query %}query={{query}}&{% endif %}page={{ paginator.num_pages }}" tabindex="-1">Last</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled next-page">
+                        <a class="page-link" href="?page=0" tabindex="-1">Next</a>
+                    </li>
+                    <li class="page-item disabled next-page">
+                        <a class="page-link" href="?page=0" tabindex="-1">Last</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+
+</div>
+
+{% endblock %}

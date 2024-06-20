@@ -3,7 +3,7 @@ By using this webapp users can add update, delete, mark_as_completed, mark_as_un
 Also users can create account and view their created and completed tasks.<br>
 
 <ul>
-<h4> To run this project locally follow below instruction </h4><br>
+<h4> To run this project locally follow below instructions </h4><br>
 <li>
   first clone repo from github with this command
 </li><br>
@@ -24,7 +24,7 @@ then activate virtual environment using this command
 </li>
 <strong> source vir_env/Scripts/activate </strong> # here vir_env is name of virtual environment which i have created. Use your virtual environment name <br><br>
 
-Make sure you are inside directory where manage.py file is located
+--> Make sure you are inside directory where manage.py file is located
 <li>
 then install all required packages from requirements.txt file 
 </li>

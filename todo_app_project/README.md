@@ -17,12 +17,12 @@ where manage.py is located
 <li>
 then create virtual environment using this command
 </li>
-<strong> python3 -m venv vir_env </strong>   # here vir_env is name of virtal environment, it can be anything <br><br>
+<strong> python3 -m venv vir_env </strong>   <-- here vir_env is name of virtal environment, it can be anything --><br><br>
 
 <li>
 then activate virtual environment using this command
 </li>
-<strong> source vir_env/Scripts/activate </strong> # here vir_env is name of virtual environment which i have created. Use your virtual environment name <br><br>
+<strong> source vir_env/Scripts/activate </strong>  <-- here vir_env is name of virtual environment which i have created. Use your virtual environment name --><br><br>
 
 --> Make sure you are inside directory where manage.py file is located
 <li>
